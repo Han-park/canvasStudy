@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>paper.js demo</title>
+<!-- Load the Paper.js library -->
+<style>
+    html,
+body {
+    height: 100%;
+}
+
+/* Scale canvas with resize attribute to full size */
+canvas[resize] {
+    width: 100%;
+    height: 100%;
+}
+
+canvas{
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:-1;
+
+}
+
+.title{
+  font-size: 100px;
+  text-align: center;
+}
+.box{
+  width: 100px;
+  height: 100px;
+  border-radius: 4px;
+  border: 1px solid black;
+  margin: 200px;
+}
+.display{
+    display: flex;
+}
+
+</style>
+
+<script type="text/javascript" src="paper-full.js"></script>
+<!-- Define inlined PaperScript associate it with myCanvas -->
+
+
+
+</head>
+<body>
+  <div class="title">
+    <br/><br/><br/>
+    Hello, Paper.js
+  </div>
+  <div class="display">
+    <div class="box" id="box1">
+      BOX
+    </div>
+    <div class="box" id="box2">
+      BOX
+    </div>
+  </div>
+
+	<canvas id="myCanvas" resize></canvas>
+</body>
+</html>
+
+<script type="text/javascript">
+  var rect1 = document.getElementById('box1').getBoundingClientRect();
+  var rect2 = document.getElementById('box2').getBoundingClientRect();
+  console.log(rect1);
+</script>
+
+<script type="text/paperscript" canvas="myCanvas">
+
+  console.log("hi");
+    // Create a Paper.js Path to draw a line into it:
+
+
+  var path = new Path();
+	// Give the stroke a color
+	path.strokeColor = 'red';
+  path.strokeWidth = "4";
+	var start = new Point(rect1.x,rect1.y);
+	// Move to start and draw a line from there
+	path.moveTo(start);
+	// Note the plus operator on Point objects.
+	// PaperScript does that for us, and much more!
+	// path.lineTo(start + [ 100, -50 ]);
+	path.lineTo(rect2.x, rect2.y+ rect2.height);
+
+  // console.log(rect1.left);
+
+
+</script>
